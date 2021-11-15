@@ -1,0 +1,40 @@
+{
+  "name": "vue-chart-3",
+  "version": "0.0.1",
+  "description": "📊 A simple wrapper around Chart.js 3 for Vue 2 & 3",
+  "scripts": {
+    "dev:lib": "cd lib && npm run dev",
+    "build:lib": "cd lib && npm run build",
+    "dev:app": "cd app && npm run dev",
+    "build:app": "cd app && npm run build",
+    "release:lib": "cd lib && npm publish --access public",
+    "changelog": "npx auto-changelog --output CHANGELOG.md --template keepachangelog --commit-limit false -u --sort-commits date-desc --hide-credit"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "chart.js": "^3.1.0",
+    "vue": ">=3.0.0-rc.0"
+  },
+  "dependencies": {
+    "csstype": "3.0.9",
+    "lodash": "latest",
+    "nanoid": "3.1.30"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.34",
+    "@types/lodash": "^4.14.175",
+    "@types/node": "^14.0.27",
+    "@vitejs/plugin-vue": "^1.9.4",
+    "chart.js": "^3.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.4.4",
+    "vite": "^2.6.14",
+    "vite-plugin-vue-type-imports": "^0.0.2",
+    "vue": "next",
+    "vue-tsc": "^0.29.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soulsam480/vue-chart-3.git"
+  }
+}

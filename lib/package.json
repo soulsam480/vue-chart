@@ -1,0 +1,36 @@
+{
+  "name": "@soulsam480/vue-chart",
+  "version": "0.0.1",
+  "description": "📊 A simple wrapper around Chart.js 3 for Vue 3",
+  "scripts": {
+    "clean": "rimraf dist && rimraf types",
+    "dts": "vue-tsc --declaration --emitDeclarationOnly --declarationDir ./dist",
+    "build": "npm run clean && vite build && npm run dts"
+  },
+  "author": {
+    "name": "Sambit Sahoo",
+    "url": "https://github.com/soulsam480"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/vue-chart.umd.js",
+  "module": "./dist/vue-chart.es.js",
+  "typings": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "peerDependencies": {
+    "chart.js": "^3.1.0",
+    "vue": ">=3.0.0-rc.0"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.5",
+    "csstype": "3.0.9",
+    "lodash-es": "^4.17.21",
+    "nanoid": "3.1.30"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soulsam480/vue-chart-3.git"
+  }
+}

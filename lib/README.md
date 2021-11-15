@@ -25,4 +25,5 @@ pnpm i @soulsam480/vue-chart
 
 
 ### Docs
+__https://vue-chart-3.netlify.app/__
 As this is just a rewrite of https://github.com/victorgarciaesgi/vue-chart-3, the docs should be same mostly, leaving `hooks`.

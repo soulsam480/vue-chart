@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { DoughnutChart } from '@soulsam480/vue-chart';
 import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
 
@@ -35,6 +35,14 @@ const options = computed<ChartOptions<'doughnut'>>(() => ({
     },
   },
 }));
+
+const chartRef = ref<Chart<'doughnut'> | null>(null);
+
+const assignRef = () => chartRef;
+
+watch(chartRef, (val) => {
+  console.log(val?.data.datasets);
+});
 </script>
 
 <template>
@@ -43,7 +51,13 @@ const options = computed<ChartOptions<'doughnut'>>(() => ({
 
     <a href="https://github.com/soulsam480/vue-chart-3">Repo</a>
 
-    <doughnut-chart :chart-data="testData" :options="options" chart-id="some-chart" />
+    <doughnut-chart
+      class="someclass"
+      :chart-ref="assignRef"
+      :chart-data="testData"
+      :options="options"
+      chart-id="some-chart"
+    />
   </div>
 </template>
 

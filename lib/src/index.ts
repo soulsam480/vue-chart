@@ -8,6 +8,4 @@ export { default as PolarAreaChart } from './components/PolarAreaChart.vue';
 export { default as RadarChart } from './components/RadarChart.vue';
 export { default as ScatterChart } from './components/ScatterChart.vue';
 
-export * from './types/utils';
 export * from './types/index';
-export * from './types/vue.types';

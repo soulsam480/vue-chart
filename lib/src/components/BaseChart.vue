@@ -6,23 +6,49 @@ export default {
 
 <script setup lang="ts">
 import { Chart, ChartData, ChartDataset, ChartOptions, ChartType, Plugin } from 'chart.js';
-import { onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, shallowRef, watch, Ref } from 'vue';
 import cloneDeep from 'lodash-es/cloneDeep';
 import isEqual from 'lodash-es/isEqual';
 import { nanoid } from 'nanoid';
-import { StyleValue } from '../types/utils';
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * an ID for the chart
+     */
     chartId: string;
+    /**
+     * type of the chart, valid in BaseChart only
+     */
     chartType: ChartType;
+    /**
+     * chart data to render, type it using the chartType generic
+     */
     chartData: ChartData<ChartType>;
+    /**
+     * chart config, type it using the chartType generic
+     */
     options?: ChartOptions<ChartType>;
+    /**
+     * width of the chart
+     * @default 400
+     */
     width?: number;
+    /**
+     * height of the chart
+     * @default 400
+     */
     height?: number;
-    cssClasses?: string;
-    styles?: StyleValue;
+    /**
+     * chart.js plugins
+     * @default []
+     */
     plugins?: Plugin[];
+    /**
+     * chartRef -> a function returning the chart ref, after rendering the chart instance will be
+     * assigned to the ref
+     */
+    chartRef?: () => Ref<Chart<ChartType> | null>;
   }>(),
   {
     width: 400,
@@ -33,7 +59,7 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-  (e: 'chart:render'): void;
+  (e: 'chart:render', chartInstance: Chart<ChartType>): void;
   (e: 'labels:update'): void;
   (e: 'chart:update', chartInstance: Chart<ChartType>): void;
   (e: 'chart:destroy'): void;
@@ -138,6 +164,10 @@ function renderChart() {
     plugins: props.plugins,
   });
 
+  if (!!props.chartRef) {
+    props.chartRef().value = chartInstance.value;
+  }
+
   handleChartRender();
 }
 
@@ -148,7 +178,7 @@ function handleLabelsUpdate() {
 function handleChartRender() {
   if (!chartInstance.value) return;
 
-  emit('chart:render');
+  emit('chart:render', chartInstance.value);
 }
 
 function handleChartUpdate() {
@@ -174,7 +204,7 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
-  <div :style="styles" style="max-width: 100%; position: relative" :class="cssClasses">
+  <div style="max-width: 100%; position: relative">
     <canvas style="max-width: 100%; max-height: 100%" :id="canvasId" v-bind="{ width, height }" ref="canvasRef" />
   </div>
 </template>

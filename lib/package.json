@@ -1,6 +1,6 @@
 {
   "name": "@soulsam480/vue-chart",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "📊 A simple wrapper around Chart.js 3 for Vue 3",
   "scripts": {
     "clean": "rimraf dist && rimraf types",

@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ChartProps } from 'src/types/index';
+import { ChartProps } from '../types/index';
 import BaseChart from './BaseChart.vue';
 
 withDefaults(defineProps<ChartProps<'line'>>(), { chartType: 'line' });

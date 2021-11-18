@@ -26,11 +26,10 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.5",
-    "lodash-es": "^4.17.21",
-    "nanoid": "3.1.30"
+    "lodash-es": "^4.17.21"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soulsam480/vue-chart-3.git"
+    "url": "git+https://github.com/soulsam480/vue-chart.git"
   }
 }

@@ -16,8 +16,7 @@
     "vue": ">=3.0.0-rc.0"
   },
   "dependencies": {
-    "lodash": "latest",
-    "nanoid": "3.1.30"
+    "lodash": "latest"
   },
   "devDependencies": {
     "@types/chart.js": "^2.9.34",
@@ -34,6 +33,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soulsam480/vue-chart-3.git"
+    "url": "git+https://github.com/soulsam480/vue-chart.git"
   }
 }

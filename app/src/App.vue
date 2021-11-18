@@ -6,7 +6,6 @@ import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
 Chart.register(...registerables);
 
 const dataValues = ref([30, 40, 60, 70, 5]);
-const toggleLegend = ref(true);
 
 const testData = computed<ChartData<'doughnut'>>(() => ({
   labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
@@ -22,16 +21,14 @@ const options = computed<ChartOptions<'doughnut'>>(() => ({
   scales: {
     myScale: {
       type: 'logarithmic',
-      position: toggleLegend.value ? 'left' : 'right',
     },
   },
   plugins: {
     legend: {
-      position: toggleLegend.value ? 'top' : 'bottom',
+      display: false,
     },
     title: {
-      display: true,
-      text: 'Chart.js Doughnut Chart',
+      display: false,
     },
   },
 }));
@@ -41,8 +38,12 @@ const chartRef = ref<Chart<'doughnut'> | null>(null);
 const assignRef = () => chartRef;
 
 watch(chartRef, (val) => {
-  console.log(val?.data.datasets);
+  console.log('From chart ref', val?.data.datasets);
 });
+
+function handleChartEvents(instance?: Chart<'doughnut'>) {
+  console.log('From chart event handler', instance);
+}
 </script>
 
 <template>
@@ -57,6 +58,10 @@ watch(chartRef, (val) => {
       :chart-data="testData"
       :options="options"
       chart-id="some-chart"
+      @chart-render="handleChartEvents"
+      @chart-update="handleChartEvents"
+      @chart-destroy="handleChartEvents"
+      @labels-update="handleChartEvents"
     />
   </div>
 </template>

@@ -9,7 +9,6 @@ import { Chart, ChartData, ChartDataset, ChartOptions, ChartType, Plugin } from 
 import { onBeforeUnmount, onMounted, ref, shallowRef, watch, Ref } from 'vue';
 import cloneDeep from 'lodash-es/cloneDeep';
 import isEqual from 'lodash-es/isEqual';
-import { nanoid } from 'nanoid';
 
 const props = withDefaults(
   defineProps<{
@@ -33,12 +32,12 @@ const props = withDefaults(
      * width of the chart
      * @default 400
      */
-    width?: number;
+    width?: number | string;
     /**
      * height of the chart
      * @default 400
      */
-    height?: number;
+    height?: number | string;
     /**
      * chart.js plugins
      * @default []
@@ -49,6 +48,24 @@ const props = withDefaults(
      * assigned to the ref
      */
     chartRef?: () => Ref<Chart<ChartType> | null>;
+    /**
+     * emitted chart labels are updated
+     */
+    onLabelsUpdate?: () => void;
+    /**
+     * emitted when chart gets updated
+     * @param chartInstance Chartjs instance
+     */
+    onChartUpdate?: (chartInstance: Chart<ChartType | any>) => void;
+    /**
+     * emitted when chart gets destroyed
+     */
+    onChartDestroy?: () => void;
+    /**
+     * emitted when chart gets rendered
+     * @param chartInstance Chartjs instance
+     */
+    onChartRender?: (chartInstance: Chart<ChartType | any>) => void;
   }>(),
   {
     width: 400,
@@ -59,15 +76,13 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-  (e: 'chart:render', chartInstance: Chart<ChartType>): void;
-  (e: 'labels:update'): void;
-  (e: 'chart:update', chartInstance: Chart<ChartType>): void;
-  (e: 'chart:destroy'): void;
+  (e: 'chart-render', chartInstance: Chart<ChartType>): void;
+  (e: 'chart-update', chartInstance: Chart<ChartType>): void;
+  (e: 'labels-update'): void;
+  (e: 'chart-destroy'): void;
 }>();
 
 const canvasRef = ref<HTMLCanvasElement>();
-
-const canvasId = `${props.chartId}-${nanoid(6)}`;
 
 let chartInstance = shallowRef<Chart<ChartType> | null>(null);
 
@@ -172,13 +187,13 @@ function renderChart() {
 }
 
 function handleLabelsUpdate() {
-  emit('labels:update');
+  emit('labels-update');
 }
 
 function handleChartRender() {
   if (!chartInstance.value) return;
 
-  emit('chart:render', chartInstance.value);
+  emit('chart-render', chartInstance.value);
 }
 
 function handleChartUpdate() {
@@ -186,13 +201,13 @@ function handleChartUpdate() {
 
   chartInstance.value.update();
 
-  emit('chart:update', chartInstance.value);
+  emit('chart-update', chartInstance.value);
 }
 
 function handleChartDestroy() {
   chartInstance.value?.destroy();
 
-  emit('chart:destroy');
+  emit('chart-destroy');
 }
 
 onMounted(renderChart);
@@ -205,6 +220,6 @@ onBeforeUnmount(() => {
 </script>
 <template>
   <div style="max-width: 100%; position: relative">
-    <canvas style="max-width: 100%; max-height: 100%" :id="canvasId" v-bind="{ width, height }" ref="canvasRef" />
+    <canvas style="max-width: 100%; max-height: 100%" :style="{ width, height }" :id="props.chartId" ref="canvasRef" />
   </div>
 </template>

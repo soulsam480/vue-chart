@@ -5,25 +5,24 @@ importers:
   .:
     specifiers:
       '@types/chart.js': ^2.9.34
-      '@types/lodash': ^4.14.175
+      '@types/lodash-es': ^4.17.5
       '@types/node': ^14.0.27
       '@vitejs/plugin-vue': ^1.9.4
       chart.js: ^3.5.1
-      lodash: latest
+      lodash-es: ^4.17.21
       rimraf: ^3.0.2
       typescript: ^4.4.4
       vite: ^2.6.14
       vite-plugin-vue-type-imports: ^0.0.2
       vue: next
       vue-tsc: ^0.29.5
-    dependencies:
-      lodash: 4.17.21
     devDependencies:
       '@types/chart.js': 2.9.34
-      '@types/lodash': 4.14.176
+      '@types/lodash-es': 4.17.5
       '@types/node': 14.17.33
       '@vitejs/plugin-vue': 1.9.4_vite@2.6.14
       chart.js: 3.6.0
+      lodash-es: 4.17.21
       rimraf: 3.0.2
       typescript: 4.4.4
       vite: 2.6.14
@@ -737,10 +736,6 @@ packages:
   /lodash-es/4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: true
-
-  /lodash/4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: false
 
   /lru-cache/6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}

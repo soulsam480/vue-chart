@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "📊 A simple wrapper around Chart.js 3 for Vue 3",
   "scripts": {
-    "clean": "rimraf dist && rimraf types",
+    "clean": "rimraf dist",
     "dts": "vue-tsc --declaration --emitDeclarationOnly --declarationDir ./dist --removeComments false",
     "build": "npm run clean && vite build && npm run dts",
     "typecheck": "vue-tsc --noEmit --skipLibCheck"

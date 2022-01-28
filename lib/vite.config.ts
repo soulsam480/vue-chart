@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import Types from 'vite-plugin-vue-type-imports';
 
@@ -8,8 +7,11 @@ import Types from 'vite-plugin-vue-type-imports';
 export default defineConfig({
   plugins: [vue(), Types()],
   build: {
+    target: 'esnext',
+    minify: 'terser',
     lib: {
-      entry: path.resolve(__dirname, './src/index.ts'),
+      entry: 'src/index.ts',
+      formats: ['cjs', 'es', 'umd'],
       name: 'vue-chart',
     },
     rollupOptions: {

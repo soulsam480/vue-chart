@@ -15,9 +15,18 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/vue-chart.umd.js",
+  "main": "./dist/vue-chart.cjs.js",
   "module": "./dist/vue-chart.es.js",
+  "jsdelivr": "./dist/vue-chart.umd.js",
+  "unpkg": "./dist/vue-chart.umd.js",
   "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/vue-chart.cjs.js",
+      "import": "./dist/vue-chart.es.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "sideEffects": false,
   "license": "MIT",
   "peerDependencies": {

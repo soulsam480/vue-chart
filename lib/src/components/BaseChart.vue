@@ -70,7 +70,6 @@ const props = withDefaults(
   {
     width: 400,
     height: 400,
-    cssClasses: '',
     plugins: () => [],
   },
 );
